@@ -52,10 +52,10 @@ pipeline {
                         publishers: [
                             sshPublisherDesc(
                                 configName: 'production',
-                                sshCredentials: [
+ /*                               sshCredentials: [
                                     username: "$USERNAME",
-                                    encryptedPassphrase: "$USERPASS"
-                                ], 
+                                    encryptedPassphrase: "$USERPASS" 
+                                ], */
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: 'dist/trainSchedule.zip',
