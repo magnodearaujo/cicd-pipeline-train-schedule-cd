@@ -13,17 +13,17 @@ pipeline {
                 branch 'master'
             }
             steps {
-                withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login_pem', usernameVariable: 'USERNAME', keyFileVariable: 'KEYFILE')]) {
+         //     withCredentials([sshUserPrivateKey(credentialsId: 'webserver_login_pem', usernameVariable: 'USERNAME', keyFileVariable: 'KEYFILE')]) {
                     sshPublisher(
                         failOnError: true,
                         continueOnError: false,
                         publishers: [
                             sshPublisherDesc(
                                 configName: 'staging',
-                                sshCredentials: [
+    /*                          sshCredentials: [
                                     username: "$USERNAME",
                                     keyfile: "$KEYFILE"
-                                ], 
+                                ], */
                                 transfers: [
                                     sshTransfer(
                                         sourceFiles: 'dist/trainSchedule.zip',
@@ -35,7 +35,7 @@ pipeline {
                             )
                         ]
                     )
-                }
+              //}
             }
         }
         stage('DeployToProduction') {
@@ -52,7 +52,7 @@ pipeline {
                         publishers: [
                             sshPublisherDesc(
                                 configName: 'production',
- /*                               sshCredentials: [
+   /*                             sshCredentials: [
                                     username: "$USERNAME",
                                     encryptedPassphrase: "$USERPASS" 
                                 ], */
